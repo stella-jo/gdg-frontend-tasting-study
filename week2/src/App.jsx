@@ -1,10 +1,10 @@
 import "./App.css";
 
 function App() {
-  const username = "eden";
-  const location = "Seoul, Korea";
-  const likeCount = 8888;
-  const caption = "FE Tasting Study WEEK 2";
+  const username = "seohee";
+  const location = "Somewhere";
+  const likeCount = 853576;
+  const caption = "hello worrrllllllld";
 
   return (
     <main className="feed">
@@ -52,6 +52,9 @@ function App() {
           <p className="caption">
             <strong>{username}</strong>
             {caption}
+          </p>
+          <p className="caption">
+            React 정복하기
           </p>
         </section>
       </article>
