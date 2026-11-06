@@ -21,7 +21,7 @@ button {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   padding: 48px 20px;
   flex-direction: column;
 }
