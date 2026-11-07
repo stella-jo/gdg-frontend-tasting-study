@@ -143,6 +143,11 @@ button {
   line-height: 1.5;
 }
 
+.like-button-is-liked svg {
+  fill: #f00;
+  stroke: #f00;
+}
+
 @media (max-width: 520px) {
   .page {
     padding: 0;

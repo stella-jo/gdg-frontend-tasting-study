@@ -1,4 +1,5 @@
 import "./App.css";
+import { useState } from "react";
 
 function Profile(props) {
   return (
@@ -16,7 +17,27 @@ function Profile(props) {
   );
 }
 
+function Like(props) {
+  const [ liked, setLiked ] = useState(false);
+  function handleClick() {
+    console.log("click!");
+    setLiked(previous => !previous);
+    props.setlikecount(pre => liked ? Number(pre)-1 : Number(pre)+1);
+  }
+  return (
+    <button type="button" aria-label="좋아요" className={liked ? "like-button-is-liked" : "like-button"} onClick={handleClick}>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z" />
+      </svg>
+    </button>
+  );
+}
+
 function Article(props) {
+  const [ likeCount, setLikeCount ] = useState(props.likecount);
+  const setCount = count => {
+    setLikeCount(count);
+  };
   return (
     <article className="post">
       <Profile username={props.username}/>
@@ -27,11 +48,7 @@ function Article(props) {
 
       <div className="post-actions">
         <div className="left-actions">
-          <button type="button" aria-label="좋아요">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z" />
-            </svg>
-          </button>
+          <Like setlikecount={setCount} />
 
           <button type="button" aria-label="댓글">
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -55,7 +72,7 @@ function Article(props) {
 
       <section className="post-content">
         <p className="like-count">
-          좋아요 <strong>{props.likecount}</strong>개
+          좋아요 <strong>{likeCount}</strong>개
         </p>
 
         <p className="caption">
@@ -64,21 +81,21 @@ function Article(props) {
         </p>
       </section>
     </article>
-  )
+  );
 }
 
 function App() {
   const article = [{
       username: "eden",
-      likecount: "44",
+      likecount: 44,
       content: "프론트엔드 찍먹 중 👅"
     }, {
       username: "seohee",
-      likecount: "2",
+      likecount: 2,
       content: "과제 끝!"
     }, {
       username: "wow",
-      likecount: "9,999",
+      likecount: 9999,
       content: "음메~"
     }
   ]
